@@ -1,8 +1,14 @@
 package util
 
+import kotlin.math.roundToInt
+
 
 fun Gelds.toHumanReadableString(): String {
-    val float = this.floatValue(exactRequired = false)
+    var float = this.floatValue(exactRequired = false)
+
+    if (exponent <= 3) {
+       float = float.roundToInt().toFloat()
+    }
 
     return when (exponent) {
         in 0..2 -> "$float"
